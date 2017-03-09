@@ -47,7 +47,9 @@ canvas[resize] {
     opacity: 0.93;
 
 }
-
+.mainSelection{
+   border:2px solid black;font-size: 1.1em; height:7.5vh;
+}
 .moovableActivation{
     
     width: 18px;
