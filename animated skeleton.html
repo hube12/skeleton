@@ -37,7 +37,6 @@
             items[i].on({
                 mousedown: function(event) {
                     mouseIsDown = true;
-                    console.log(this,this.pivot)
                     this.pivot=event.point
                 },
                 mouseup: function(event) {
@@ -131,12 +130,8 @@
                     
                 }
             })
-            
-            
-            
-        
         new PointText({
-            content: 'Utilise la souris pour desassembler le squelette',
+            content: 'Utilise la souris pour desassembler, tourner ou translater le squelette',
             point: view.bounds.bottomRight - [30, 30],
             fontSize: 12,
             justification: 'right'
@@ -148,16 +143,16 @@
     
     <script>
         function automatify(id){
-            var boolIt=document.getElementById("moovableButton_4").style.float==document.getElementById("moovableButton_4").style.float
-            console.log(boolIt)
-            if (id=="button_3" && boolIt){
-                changeStyle("button_4")
-                
+           /* b3=document.getElementById("moovableButton_3").style.float=="left"
+            b4=document.getElementById("moovableButton_4").style.float=="left"
+            var boolIt=b4^b3 */
+            if (id=="button_3"){
+                if (document.getElementById("moovableButton_4").style.float=='left'){changeStyle("button_4")}
                 if (document.getElementById("moovableButton_5").style.float=='left'){changeStyle("button_5")}
                 if (document.getElementById("moovableButton_6").style.float=='left'){changeStyle("button_6")}
             }
-            if (id=="button_4" && boolIt){
-                changeStyle("button_3")
+            if (id=="button_4"){
+                if (document.getElementById("moovableButton_3").style.float=='left'){changeStyle("button_3")}
                 if (document.getElementById("moovableButton_5").style.float=='left'){changeStyle("button_5")}
                 if (document.getElementById("moovableButton_6").style.float=='left'){changeStyle("button_6")}
             }
@@ -171,11 +166,8 @@
                 if (document.getElementById("moovableButton_4").style.float=='left'){changeStyle("button_4")}
                 if (document.getElementById("moovableButton_3").style.float=='left'){changeStyle("button_3")}
             }
-                
-            
         }
         function disparition(pos){
-            
             if (pos=="left"){
                 location.reload();
             }
@@ -183,7 +175,6 @@
                 with (paper){
                     project.activeLayer.removeChildren();
                 }
-                
             }
         }
         
@@ -205,51 +196,51 @@
 </head>
 <body >
     <div id=buttons>
-        <div id="generalRotation" style='border:2px solid black;font-size: 1.1em; height:5vh'>
+        <div id="generalRotation" class="mainSelection">
             Rotation perpétuelle du squelette
             <div class="contour">
                 <div id="button_1" class="couleurActivation" onclick="changeStyle(this.id)">
-                    <div id="moovableButton_1" class="moovableActivation"  style="float:left;"></div> 
+                    <div id="moovableButton_1" class="moovableActivation" style="float:left;"></div> 
                 </div>
             </div>
         </div>
-        <div id="nettoyage" style='border:2px solid black;font-size: 1.1em; height:5vh'>
+        <div id="nettoyage" class="mainSelection">
             Masquer/Rétablir le squelette
             <div class="contour">
                 <div id="button_2" class="couleurActivation" onclick="changeStyle(this.id),disparition(this.childNodes[1].style.float)">
-                    <div id="moovableButton_2" class="moovableActivation"  style="float:left;"></div> 
+                    <div id="moovableButton_2" class="moovableActivation" style="float:left;"></div> 
                 </div>
             </div>
         </div>
-        <div id="translation" style='border:2px solid black;font-size: 1.1em; height:5vh'>
+        <div id="translation" class="mainSelection">
             ON/OFF la translation des éléments
             <div class="contour">
                 <div id="button_3" class="couleurActivation" onclick="automatify(this.id),changeStyle(this.id)">
-                    <div id="moovableButton_3" class="moovableActivation"  style="float:left;"></div> 
+                    <div id="moovableButton_3" class="moovableActivation" style="float:left;"></div> 
                 </div>
             </div>
         </div>
-        <div id="translation" style='border:2px solid black;font-size: 1.1em; height:5vh'>
+        <div id="translation" class="mainSelection">
             ON/OFF la rotation des éléments
             <div class="contour">
                 <div id="button_4" class="couleurActivation" onclick="automatify(this.id),changeStyle(this.id)">
-                    <div id="moovableButton_4" class="moovableActivation"  style="float:left;"></div> 
+                    <div id="moovableButton_4" class="moovableActivation" style="float:left;"></div> 
                 </div>
             </div>
         </div>
-        <div id="translation" style='border:2px solid black;font-size: 1.1em; height:5vh'>
-            ON/OFF la rotation du squelette
-            <div class="contour">
-                <div id="button_5" class="couleurActivation" onclick="automatify(this.id),changeStyle(this.id)">
-                    <div id="moovableButton_5" class="moovableActivation"  style="float:left;"></div> 
-                </div>
-            </div>
-        </div>
-        <div id="translation" style='border:2px solid black;font-size: 1.1em; height:5vh'>
+        <div id="translation" class="mainSelection">
             ON/OFF la translation du squelette
             <div class="contour">
+                <div id="button_5" class="couleurActivation" onclick="automatify(this.id),changeStyle(this.id)">
+                    <div id="moovableButton_5" class="moovableActivation" style="float:left;"></div> 
+                </div>
+            </div>
+        </div>
+        <div id="translation" class="mainSelection">
+            ON/OFF la rotation du squelette
+            <div class="contour">
                 <div id="button_6" class="couleurActivation" onclick="automatify(this.id),changeStyle(this.id)">
-                    <div id="moovableButton_6" class="moovableActivation"  style="float:left;"></div> 
+                    <div id="moovableButton_6" class="moovableActivation" style="float:left;"></div> 
                 </div>
             </div>
         </div>
